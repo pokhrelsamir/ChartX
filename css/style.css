@@ -1012,3 +1012,55 @@ body {
     }
 
 }
+
+
+/* =========================================================
+   DATA TOOLS
+   ========================================================= */
+
+.data-tools {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+
+.data-tools label {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE DATA TOOLS
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .data-tools {
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .data-tools .btn {
+
+        width: 100%;
+    }
+
+}
