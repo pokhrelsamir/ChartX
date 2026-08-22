@@ -2,40 +2,90 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
         content="ChartX is a lightweight data visualization tool for creating interactive charts from custom data."
     >
 
-    <meta name="author" content="Samir Pokhrel">
+    <meta
+        name="author"
+        content="Samir Pokhrel"
+    >
+
+    <meta
+        name="theme-color"
+        content="#4f46e5"
+    >
 
     <title>ChartX — Data Visualization Tool</title>
 
-    <link rel="stylesheet" href="css/style.css">
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- =====================================================
+         STYLES
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+
+    <!-- =====================================================
+         CHART.JS
+         ===================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"
+    ></script>
+
 </head>
+
 
 <body>
 
-    <!-- ================= HEADER ================= -->
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
 
     <header class="app-header">
 
         <div class="header-content">
 
+
+            <!-- Brand -->
+
             <div class="brand">
-                <div class="brand-icon">📊</div>
+
+                <div class="brand-icon">
+                    📊
+                </div>
+
 
                 <div>
-                    <h1>ChartX</h1>
-                    <p>Data Visualization Tool</p>
+
+                    <h1>
+                        ChartX
+                    </h1>
+
+                    <p>
+                        Data Visualization Tool
+                    </p>
+
                 </div>
+
             </div>
+
+
+            <!-- Header Actions -->
 
             <div class="header-actions">
 
@@ -43,7 +93,7 @@
                     type="button"
                     class="header-btn"
                     id="resetBtn"
-                    title="Reset Chart"
+                    title="Reset ChartX"
                 >
                     ↻ Reset
                 </button>
@@ -55,82 +105,127 @@
     </header>
 
 
-    <!-- ================= MAIN ================= -->
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
 
     <main class="container">
 
-        <!-- Page Introduction -->
+
+        <!-- =================================================
+             PAGE INTRODUCTION
+             ================================================= -->
 
         <section class="page-intro">
 
-            <div>
-                <span class="eyebrow">VISUALIZE YOUR DATA</span>
+            <span class="eyebrow">
+                VISUALIZE YOUR DATA
+            </span>
 
-                <h2>Create beautiful charts from your data.</h2>
 
-                <p>
-                    Enter your data, choose a chart type, and generate
-                    an interactive visualization instantly.
-                </p>
-            </div>
+            <h2>
+                Create beautiful charts from your data.
+            </h2>
+
+
+            <p>
+                Enter your data, import a CSV file, choose a
+                chart type, customize the visualization, and
+                generate an interactive chart instantly.
+            </p>
 
         </section>
 
 
-        <!-- ================= WORKSPACE ================= -->
+
+        <!-- =================================================
+             WORKSPACE
+             ================================================= -->
 
         <section class="workspace">
 
 
-            <!-- ================= DATA PANEL ================= -->
+            <!-- =================================================
+                 DATA PANEL
+                 ================================================= -->
 
             <div class="panel data-panel">
+
+
+                <!-- Panel Header -->
 
                 <div class="panel-header">
 
                     <div>
-                        <h3>Data Input</h3>
-                        <p>Add the values you want to visualize.</p>
+
+                        <h3>
+                            Data Input
+                        </h3>
+
+                        <p>
+                            Add or import the values you want
+                            to visualize.
+                        </p>
+
                     </div>
+
+
+                    <!-- Data Tools -->
 
                     <div class="data-tools">
 
-    <label
-        for="csvFileInput"
-        class="btn btn-secondary"
-    >
-        📂 Import CSV
-    </label>
 
-    <input
-        type="file"
-        id="csvFileInput"
-        accept=".csv,text/csv"
-        hidden
-    >
+                        <!-- CSV Import -->
 
-    <button
-        type="button"
-        class="btn btn-secondary"
-        id="addRowBtn"
-    >
-        + Add Data
-    </button>
+                        <label
+                            for="csvFileInput"
+                            class="btn btn-secondary"
+                            title="Import CSV file"
+                        >
+                            📂 Import CSV
+                        </label>
 
-</div>
+
+                        <input
+                            type="file"
+                            id="csvFileInput"
+                            accept=".csv,text/csv"
+                            hidden
+                        >
+
+
+                        <!-- Add Row -->
+
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            id="addRowBtn"
+                        >
+                            + Add Data
+                        </button>
+
+                    </div>
 
                 </div>
 
 
-                <!-- Chart Configuration -->
+
+                <!-- =================================================
+                     CHART CONFIGURATION
+                     ================================================= -->
 
                 <div class="configuration">
+
+
+                    <!-- Chart Title -->
 
                     <div class="form-group">
 
                         <label for="chartTitle">
                             Chart Title
                         </label>
+
 
                         <input
                             type="text"
@@ -142,11 +237,15 @@
                     </div>
 
 
+
+                    <!-- Chart Type -->
+
                     <div class="form-group">
 
                         <label for="chartType">
                             Chart Type
                         </label>
+
 
                         <select id="chartType">
 
@@ -177,11 +276,15 @@
                 </div>
 
 
-                <!-- Data Table -->
+
+                <!-- =================================================
+                     DATA TABLE
+                     ================================================= -->
 
                 <div class="data-table-wrapper">
 
                     <table class="data-table">
+
 
                         <thead>
 
@@ -207,8 +310,14 @@
 
                         </thead>
 
+
                         <tbody id="dataTableBody">
-                            <!-- Data rows generated by JavaScript -->
+
+                            <!--
+                                Data rows are generated
+                                dynamically by app.js.
+                            -->
+
                         </tbody>
 
                     </table>
@@ -216,7 +325,10 @@
                 </div>
 
 
-                <!-- Generate Button -->
+
+                <!-- =================================================
+                     DATA ACTIONS
+                     ================================================= -->
 
                 <div class="data-actions">
 
@@ -233,16 +345,33 @@
             </div>
 
 
-            <!-- ================= CHART PANEL ================= -->
+
+            <!-- =================================================
+                 CHART PANEL
+                 ================================================= -->
 
             <div class="panel chart-panel">
+
+
+                <!-- Chart Panel Header -->
 
                 <div class="panel-header">
 
                     <div>
-                        <h3>Chart Preview</h3>
-                        <p>Your visualization will appear here.</p>
+
+                        <h3>
+                            Chart Preview
+                        </h3>
+
+                        <p>
+                            Customize and preview your
+                            visualization.
+                        </p>
+
                     </div>
+
+
+                    <!-- Download -->
 
                     <button
                         type="button"
@@ -255,11 +384,124 @@
                 </div>
 
 
-                <!-- Chart Container -->
+
+                <!-- =================================================
+                     CHART SETTINGS
+                     ================================================= -->
+
+                <div class="chart-settings">
+
+
+                    <!-- Color -->
+
+                    <div class="setting-group">
+
+                        <label for="chartColor">
+                            Chart Color
+                        </label>
+
+
+                        <input
+                            type="color"
+                            id="chartColor"
+                            value="#4f46e5"
+                            title="Choose chart color"
+                        >
+
+                    </div>
+
+
+
+                    <!-- Legend -->
+
+                    <div class="setting-group">
+
+                        <label for="showLegend">
+                            Legend
+                        </label>
+
+
+                        <select id="showLegend">
+
+                            <option value="true">
+                                Show
+                            </option>
+
+                            <option value="false">
+                                Hide
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Grid -->
+
+                    <div class="setting-group">
+
+                        <label for="showGrid">
+                            Grid
+                        </label>
+
+
+                        <select id="showGrid">
+
+                            <option value="true">
+                                Show
+                            </option>
+
+                            <option value="false">
+                                Hide
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Y Axis -->
+
+                    <div class="setting-group">
+
+                        <label for="beginAtZero">
+                            Y-Axis Starts at Zero
+                        </label>
+
+
+                        <select id="beginAtZero">
+
+                            <option value="true">
+                                Yes
+                            </option>
+
+                            <option value="false">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CHART CONTAINER
+                     ================================================= -->
 
                 <div class="chart-container">
 
-                    <canvas id="chartCanvas"></canvas>
+
+                    <canvas
+                        id="chartCanvas"
+                    ></canvas>
+
+
+                    <!-- Empty State -->
 
                     <div
                         class="chart-empty"
@@ -270,11 +512,17 @@
                             📊
                         </div>
 
-                        <h4>No chart generated yet</h4>
+
+                        <h4>
+                            No chart generated yet
+                        </h4>
+
 
                         <p>
                             Enter your data and click
-                            <strong>Generate Chart</strong>.
+                            <strong>
+                                Generate Chart
+                            </strong>.
                         </p>
 
                     </div>
@@ -286,9 +534,15 @@
         </section>
 
 
-        <!-- ================= INFO CARDS ================= -->
+
+        <!-- =================================================
+             FEATURE CARDS
+             ================================================= -->
 
         <section class="feature-grid">
+
+
+            <!-- Chart Types -->
 
             <article class="feature-card">
 
@@ -296,35 +550,80 @@
                     📊
                 </div>
 
+
                 <div>
-                    <h3>Multiple Chart Types</h3>
+
+                    <h3>
+                        Multiple Chart Types
+                    </h3>
+
 
                     <p>
                         Create bar, line, pie, doughnut,
                         and scatter charts.
                     </p>
+
                 </div>
 
             </article>
 
+
+
+            <!-- CSV -->
 
             <article class="feature-card">
 
                 <div class="feature-icon">
-                    ⚡
+                    📂
                 </div>
 
+
                 <div>
-                    <h3>Instant Visualization</h3>
+
+                    <h3>
+                        CSV Import
+                    </h3>
+
 
                     <p>
-                        Transform your raw data into
-                        charts instantly.
+                        Import datasets from CSV files
+                        and visualize them instantly.
                     </p>
+
                 </div>
 
             </article>
 
+
+
+            <!-- Customization -->
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    🎨
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Chart Customization
+                    </h3>
+
+
+                    <p>
+                        Customize colors, legends, grids,
+                        and axis behavior.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Export -->
 
             <article class="feature-card">
 
@@ -332,13 +631,73 @@
                     💾
                 </div>
 
+
                 <div>
-                    <h3>Export Charts</h3>
+
+                    <h3>
+                        PNG Export
+                    </h3>
+
 
                     <p>
-                        Download your generated chart
-                        as a PNG image.
+                        Download your generated
+                        visualization as a PNG image.
                     </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Fast -->
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Instant Visualization
+                    </h3>
+
+
+                    <p>
+                        Turn raw data into useful
+                        visual insights quickly.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Responsive -->
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    📱
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Responsive Design
+                    </h3>
+
+
+                    <p>
+                        ChartX works smoothly across
+                        desktop, tablet, and mobile.
+                    </p>
+
                 </div>
 
             </article>
@@ -348,23 +707,38 @@
     </main>
 
 
-    <!-- ================= FOOTER ================= -->
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
 
     <footer class="app-footer">
 
         <p>
-            © <span id="currentYear"></span> ChartX.
-            Built with HTML, CSS, JavaScript & Chart.js.
+
+            ©
+            <span id="currentYear"></span>
+            ChartX.
+
+            Built with HTML, CSS, JavaScript
+            &amp; Chart.js.
+
         </p>
 
     </footer>
 
 
-    <!-- ================= APPLICATION ================= -->
+
+    <!-- =====================================================
+         APPLICATION SCRIPTS
+         ===================================================== -->
 
     <script src="js/data.js"></script>
+
     <script src="js/chart.js"></script>
+
     <script src="js/app.js"></script>
+
 
 </body>
 
