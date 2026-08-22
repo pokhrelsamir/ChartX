@@ -16,7 +16,9 @@
 /* =========================================================
    DOM ELEMENTS
    ========================================================= */
-
+const csvFileInput =
+    document.getElementById("csvFileInput");
+    
 const dataTableBody =
     document.getElementById("dataTableBody");
 
