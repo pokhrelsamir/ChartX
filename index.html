@@ -93,13 +93,31 @@
                         <p>Add the values you want to visualize.</p>
                     </div>
 
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        id="addRowBtn"
-                    >
-                        + Add Data
-                    </button>
+                    <div class="data-tools">
+
+    <label
+        for="csvFileInput"
+        class="btn btn-secondary"
+    >
+        📂 Import CSV
+    </label>
+
+    <input
+        type="file"
+        id="csvFileInput"
+        accept=".csv,text/csv"
+        hidden
+    >
+
+    <button
+        type="button"
+        class="btn btn-secondary"
+        id="addRowBtn"
+    >
+        + Add Data
+    </button>
+
+</div>
 
                 </div>
 
