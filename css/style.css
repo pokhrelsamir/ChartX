@@ -1,0 +1,1014 @@
+/* =========================================================
+   ChartX
+   Data Visualization Tool
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    background: #f5f7fb;
+    color: #172033;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root {
+
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --primary-light: #eef2ff;
+
+    --success: #16a34a;
+    --danger: #dc2626;
+
+    --text: #172033;
+    --text-secondary: #667085;
+    --text-muted: #98a2b3;
+
+    --background: #f5f7fb;
+    --surface: #ffffff;
+    --border: #e4e7ec;
+
+    --shadow-sm:
+        0 1px 3px rgba(16, 24, 40, 0.08);
+
+    --shadow-md:
+        0 8px 24px rgba(16, 24, 40, 0.08);
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.app-header {
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(12px);
+}
+
+
+.header-content {
+
+    width: min(1400px, 92%);
+
+    min-height: 72px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.brand {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.brand-icon {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: var(--primary-light);
+
+    font-size: 21px;
+}
+
+
+.brand h1 {
+
+    font-size: 20px;
+    font-weight: 800;
+
+    letter-spacing: -0.4px;
+}
+
+
+.brand p {
+
+    margin-top: -2px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+
+.header-actions {
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.header-btn {
+
+    border: 1px solid var(--border);
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    padding: 9px 14px;
+
+    border-radius: var(--radius-sm);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.header-btn:hover {
+
+    background: #f9fafb;
+
+    border-color: #cfd4dc;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+
+    width: min(1400px, 92%);
+
+    margin: auto;
+
+    padding: 52px 0 40px;
+}
+
+
+/* =========================================================
+   PAGE INTRO
+   ========================================================= */
+
+.page-intro {
+
+    margin-bottom: 34px;
+}
+
+
+.eyebrow {
+
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+
+.page-intro h2 {
+
+    max-width: 700px;
+
+    font-size: clamp(28px, 4vw, 42px);
+
+    line-height: 1.15;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 12px;
+}
+
+
+.page-intro p {
+
+    max-width: 650px;
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   WORKSPACE
+   ========================================================= */
+
+.workspace {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(360px, 0.85fr)
+        minmax(500px, 1.5fr);
+
+    gap: 22px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   PANELS
+   ========================================================= */
+
+.panel {
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    overflow: hidden;
+}
+
+
+.panel-header {
+
+    min-height: 78px;
+
+    padding: 18px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.panel-header h3 {
+
+    font-size: 16px;
+
+    font-weight: 750;
+
+    letter-spacing: -0.2px;
+}
+
+
+.panel-header p {
+
+    margin-top: 2px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   CONFIGURATION
+   ========================================================= */
+
+.configuration {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+
+    padding: 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.form-group label {
+
+    color: #344054;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: var(--radius-sm);
+
+    background: #fff;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group input::placeholder {
+
+    color: #98a2b3;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+
+    min-height: 38px;
+
+    padding: 0 14px;
+
+    border-radius: var(--radius-sm);
+
+    border: 1px solid transparent;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.btn:hover {
+
+    transform: translateY(-1px);
+}
+
+
+.btn:active {
+
+    transform: translateY(0);
+}
+
+
+.btn-primary {
+
+    background: var(--primary);
+
+    color: white;
+
+    box-shadow:
+        0 4px 10px rgba(79, 70, 229, 0.18);
+}
+
+
+.btn-primary:hover {
+
+    background: var(--primary-dark);
+
+    box-shadow:
+        0 6px 14px rgba(79, 70, 229, 0.25);
+}
+
+
+.btn-secondary {
+
+    background: #fff;
+
+    color: #344054;
+
+    border-color: var(--border);
+}
+
+
+.btn-secondary:hover {
+
+    background: #f9fafb;
+
+    border-color: #cfd4dc;
+}
+
+
+.generate-btn {
+
+    width: 100%;
+
+    min-height: 46px;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   DATA TABLE
+   ========================================================= */
+
+.data-table-wrapper {
+
+    padding: 0 20px;
+
+    overflow-x: auto;
+}
+
+
+.data-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 440px;
+}
+
+
+.data-table th {
+
+    height: 42px;
+
+    padding: 0 10px;
+
+    text-align: left;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.data-table th:first-child {
+
+    width: 40px;
+}
+
+
+.data-table th:last-child {
+
+    width: 80px;
+
+    text-align: center;
+}
+
+
+.data-table td {
+
+    padding: 8px 10px;
+
+    border-bottom: 1px solid #f0f2f5;
+}
+
+
+.data-table td:first-child {
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.data-table td:last-child {
+
+    text-align: center;
+}
+
+
+.data-table input {
+
+    width: 100%;
+
+    height: 36px;
+
+    padding: 0 10px;
+
+    border: 1px solid #e1e4e8;
+
+    border-radius: 7px;
+
+    background: #fff;
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.data-table input:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 2px rgba(79, 70, 229, 0.08);
+}
+
+
+.remove-row {
+
+    width: 30px;
+    height: 30px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #fee2e2;
+
+    border-radius: 7px;
+
+    background: #fff;
+
+    color: var(--danger);
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.remove-row:hover {
+
+    background: #fef2f2;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DATA ACTIONS
+   ========================================================= */
+
+.data-actions {
+
+    padding: 18px 20px 20px;
+}
+
+
+/* =========================================================
+   CHART PANEL
+   ========================================================= */
+
+.chart-panel {
+
+    min-height: 580px;
+}
+
+
+.chart-container {
+
+    position: relative;
+
+    height: 480px;
+
+    padding: 26px;
+}
+
+
+.chart-container canvas {
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+    display: none;
+}
+
+
+.chart-empty {
+
+    position: absolute;
+
+    inset: 26px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    border: 1px dashed #d8dde6;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fafbff,
+            #f8f9fc
+        );
+}
+
+
+.empty-icon {
+
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    border-radius: 14px;
+
+    background: var(--primary-light);
+
+    font-size: 26px;
+}
+
+
+.chart-empty h4 {
+
+    margin-bottom: 5px;
+
+    font-size: 15px;
+}
+
+
+.chart-empty p {
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   FEATURE GRID
+   ========================================================= */
+
+.feature-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-top: 22px;
+}
+
+
+.feature-card {
+
+    display: flex;
+
+    gap: 14px;
+
+    padding: 20px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+.feature-icon {
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: var(--primary-light);
+
+    font-size: 18px;
+}
+
+
+.feature-card h3 {
+
+    margin-bottom: 4px;
+
+    font-size: 13px;
+
+    font-weight: 750;
+}
+
+
+.feature-card p {
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.app-footer {
+
+    width: min(1400px, 92%);
+
+    margin: auto;
+
+    padding: 22px 0 30px;
+
+    text-align: center;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   UTILITIES
+   ========================================================= */
+
+.hidden {
+
+    display: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .workspace {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .chart-panel {
+
+        min-height: auto;
+    }
+
+
+    .chart-container {
+
+        height: 500px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .container {
+
+        width: 94%;
+
+        padding-top: 34px;
+    }
+
+
+    .header-content {
+
+        width: 94%;
+    }
+
+
+    .brand p {
+
+        display: none;
+    }
+
+
+    .page-intro h2 {
+
+        font-size: 30px;
+    }
+
+
+    .configuration {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .panel-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .panel-header .btn {
+
+        width: 100%;
+    }
+
+
+    .chart-container {
+
+        height: 400px;
+
+        padding: 16px;
+    }
+
+
+    .chart-empty {
+
+        inset: 16px;
+    }
+
+
+    .feature-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+    .page-intro h2 {
+
+        font-size: 26px;
+
+        letter-spacing: -0.8px;
+    }
+
+
+    .page-intro p {
+
+        font-size: 13px;
+    }
+
+
+    .panel-header {
+
+        padding: 16px;
+    }
+
+
+    .configuration {
+
+        padding: 16px;
+    }
+
+
+    .data-table-wrapper {
+
+        padding: 0 10px;
+    }
+
+
+    .data-actions {
+
+        padding: 16px;
+    }
+
+
+    .chart-container {
+
+        height: 350px;
+    }
+
+}
