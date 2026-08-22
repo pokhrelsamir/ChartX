@@ -7,6 +7,8 @@
  * - Data retrieval
  * - Data validation
  * - Data normalization
+ * - Data point management
+ * - CSV-friendly data processing
  */
 
 
@@ -15,30 +17,37 @@
    ========================================================= */
 
 const DEFAULT_DATA = [
+
     {
         label: "January",
         value: 120
     },
+
     {
         label: "February",
         value: 180
     },
+
     {
         label: "March",
         value: 150
     },
+
     {
         label: "April",
         value: 220
     },
+
     {
         label: "May",
         value: 190
     },
+
     {
         label: "June",
         value: 260
     }
+
 ];
 
 
@@ -56,8 +65,11 @@ let chartData = [];
 function initializeData() {
 
     chartData = DEFAULT_DATA.map(item => ({
+
         label: item.label,
+
         value: item.value
+
     }));
 
 }
@@ -86,10 +98,66 @@ function setChartData(data) {
 
     }
 
-    chartData = data.map(item => ({
-        label: String(item.label || ""),
-        value: Number(item.value) || 0
-    }));
+
+    chartData = data
+        .map(item => {
+
+            if (!item) {
+
+                return null;
+
+            }
+
+
+            const label =
+                item.label !== undefined
+                    ? String(item.label).trim()
+                    : "";
+
+
+            const rawValue =
+                item.value !== undefined
+                    ? item.value
+                    : "";
+
+
+            let value = "";
+
+
+            if (
+                rawValue !== "" &&
+                rawValue !== null &&
+                rawValue !== undefined
+            ) {
+
+                const numericValue =
+                    Number(rawValue);
+
+
+                if (
+                    Number.isFinite(
+                        numericValue
+                    )
+                ) {
+
+                    value = numericValue;
+
+                }
+
+            }
+
+
+            return {
+
+                label,
+
+                value
+
+            };
+
+        })
+        .filter(Boolean);
+
 
     return true;
 
@@ -100,11 +168,20 @@ function setChartData(data) {
    ADD DATA ROW
    ========================================================= */
 
-function addDataPoint(label = "", value = "") {
+function addDataPoint(
+    label = "",
+    value = ""
+) {
 
     chartData.push({
+
         label: String(label),
-        value: value === "" ? "" : Number(value)
+
+        value:
+            value === ""
+                ? ""
+                : Number(value)
+
     });
 
 }
@@ -114,19 +191,29 @@ function addDataPoint(label = "", value = "") {
    UPDATE DATA ROW
    ========================================================= */
 
-function updateDataPoint(index, field, value) {
+function updateDataPoint(
+    index,
+    field,
+    value
+) {
 
     if (
+        !Number.isInteger(index) ||
         index < 0 ||
         index >= chartData.length
     ) {
+
         return false;
+
     }
 
 
     if (field === "label") {
 
-        chartData[index].label = value;
+        chartData[index].label =
+            String(value);
+
+        return true;
 
     }
 
@@ -138,9 +225,12 @@ function updateDataPoint(index, field, value) {
                 ? ""
                 : Number(value);
 
+        return true;
+
     }
 
-    return true;
+
+    return false;
 
 }
 
@@ -152,11 +242,15 @@ function updateDataPoint(index, field, value) {
 function removeDataPoint(index) {
 
     if (
+        !Number.isInteger(index) ||
         index < 0 ||
         index >= chartData.length
     ) {
+
         return false;
+
     }
+
 
     chartData.splice(index, 1);
 
@@ -182,40 +276,101 @@ function resetData() {
 
 function validateChartData() {
 
-    if (!chartData.length) {
+    if (!Array.isArray(chartData)) {
 
         return {
+
             valid: false,
-            message: "Please add at least one data point."
+
+            message:
+                "Unable to read chart data."
+
         };
 
     }
 
 
-    const validRows = chartData.filter(item => {
-
-        return (
-            String(item.label).trim() !== "" &&
-            item.value !== "" &&
-            Number.isFinite(Number(item.value))
-        );
-
-    });
-
-
-    if (!validRows.length) {
+    if (chartData.length === 0) {
 
         return {
+
             valid: false,
-            message: "Please enter valid labels and numeric values."
+
+            message:
+                "Please add at least one data point."
+
+        };
+
+    }
+
+
+    const validRows =
+        chartData.filter(item => {
+
+            if (!item) {
+
+                return false;
+
+            }
+
+
+            const label =
+                String(
+                    item.label ?? ""
+                ).trim();
+
+
+            const value =
+                item.value;
+
+
+            return (
+
+                label !== "" &&
+
+                value !== "" &&
+
+                value !== null &&
+
+                value !== undefined &&
+
+                Number.isFinite(
+                    Number(value)
+                )
+
+            );
+
+        });
+
+
+    if (validRows.length === 0) {
+
+        return {
+
+            valid: false,
+
+            message:
+                "Please enter valid labels and numeric values."
+
         };
 
     }
 
 
     return {
+
         valid: true,
-        data: validRows
+
+        data: validRows.map(item => ({
+
+            label:
+                String(item.label).trim(),
+
+            value:
+                Number(item.value)
+
+        }))
+
     };
 
 }
@@ -225,9 +380,24 @@ function validateChartData() {
    GET CHART LABELS
    ========================================================= */
 
-function getChartLabels(data = chartData) {
+function getChartLabels(
+    data = chartData
+) {
 
-    return data.map(item => item.label);
+    if (!Array.isArray(data)) {
+
+        return [];
+
+    }
+
+
+    return data.map(item =>
+
+        String(
+            item?.label ?? ""
+        ).trim()
+
+    );
 
 }
 
@@ -236,9 +406,56 @@ function getChartLabels(data = chartData) {
    GET CHART VALUES
    ========================================================= */
 
-function getChartValues(data = chartData) {
+function getChartValues(
+    data = chartData
+) {
 
-    return data.map(item => Number(item.value));
+    if (!Array.isArray(data)) {
+
+        return [];
+
+    }
+
+
+    return data.map(item => {
+
+        const value =
+            Number(item?.value);
+
+
+        return Number.isFinite(value)
+            ? value
+            : 0;
+
+    });
+
+}
+
+
+/* =========================================================
+   GET VALID DATA
+   ========================================================= */
+
+function getValidChartData() {
+
+    const result =
+        validateChartData();
+
+
+    return result.valid
+        ? result.data
+        : [];
+
+}
+
+
+/* =========================================================
+   DATA COUNT
+   ========================================================= */
+
+function getDataCount() {
+
+    return chartData.length;
 
 }
 
