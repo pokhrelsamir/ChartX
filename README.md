@@ -536,13 +536,26 @@ See the [`LICENSE`](LICENSE) file for complete license terms.
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
-**Samir Pokhrel**
+<div align="center">
 
-B.Sc. Computer Science and Information Technology
+### Samir Pokhrel
 
-Nepal
+**B.Sc. CSIT Student | Web Developer | Networking Enthusiast**
+
+Built using **HTML, CSS, and JavaScript**
+
+<br>
+
+<a href="https://github.com/pokhrelsamir">
+  <img src="https://img.shields.io/badge/GitHub-pokhrelsamir-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+</a>
+<a href="https://www.linkedin.com/in/samirpokhrel/">
+  <img src="https://img.shields.io/badge/LinkedIn-Samir%20Pokhrel-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+</a>
+
+</div>
 
 ---
 
