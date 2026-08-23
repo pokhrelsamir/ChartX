@@ -96,7 +96,7 @@ Reset the application and restore the default dataset with one click.
 
 ![ChartX Chart Preview](screenshots/chart-preview.png)
 
-> Add your own screenshots to the `screenshots/` directory using the filenames shown above.
+
 
 ---
 
@@ -266,7 +266,7 @@ June,260
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/ChartX.git
+git clone https://github.com/pokhrelsamir/ChartX.git
 ```
 
 ### 2. Navigate to the Project
@@ -566,7 +566,7 @@ Your support and feedback are greatly appreciated.
 
 **Turn data into visual insights.**
 
-Built with ❤️ using **HTML, CSS, JavaScript & Chart.js**
+Built using **HTML, CSS, JavaScript & Chart.js**
 
 ⭐ **Star the repository if you like the project!**
 
